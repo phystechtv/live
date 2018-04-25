@@ -1,0 +1,14 @@
+#!/bin/bash
+
+export VIDEOS=/mnt/archive/BYKHUN/phystechtv
+
+while true; do
+  find $VIDEOS -name "*.*" | xargs -I $ \
+    ffmpeg -re -i $ \
+    -i phystech.tv.png -filter_complex "overlay=main_w-overlay_w-0:0" \
+    -vcodec libx264 -vprofile baseline -g 30 \
+    -s 1920x1080 \
+    -acodec aac -strict -2 \
+    -f flv rtmp://phystech.tv/live/stream
+done
+
