@@ -16,6 +16,6 @@ function play {
 export -f play
 
 while true; do
-  find $VIDEOS -name "*.*" | xargs -I $ sh -c 'play "$";'
+  find $VIDEOS -name "*.*" | shuf | xargs -I $ sh -c 'play "$";'
 done
 
